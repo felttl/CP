@@ -15,6 +15,8 @@ pour la conception de tache
 - mettre a jour les taches (et ça priorité) selon le nombre de consultations  (ou la dernière consultation donc éditable par l'utilisateur)
 - sauvegarder les taches dans un fichier
 
+tools ids:
 
+	- la dernière tache modifié est prioritaire si l'option est activée (booléen dans le prog principal)
 
 # end page

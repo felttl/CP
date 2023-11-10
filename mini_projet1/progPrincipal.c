@@ -1,6 +1,14 @@
+/**
+ * Tasker V1
+ * author : felix TTL L2
+*/
+
+
+
 // ma boite a outils 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 typedef enum bool{true, false} bool ; // printf usable
 
 
@@ -102,7 +110,7 @@ char Menu(){
      *      - w+ : écraser si existant puis écrire
      *      - r : lire
     */
-    int sauvegarde(char*filename, char*data, char mod){
+    int sauvegarde(char*filename, char*data, char * mod){
         FILE *fp;
         fp = fopen(filename, mod);
         if(fp == NULL){
@@ -121,14 +129,14 @@ char Menu(){
      * 1 ... etc....
      * 
     */
-    int chargement(char*filepath,int line_num,char* getLine){
+    int chargement(char*filepath,Task * conteneur){
         int res = 0;
         // on écrit durectement la donnée brute dans le fichier de sauvegarde 
         // on retranscrit en c avec des chaines
         ///////////////////////////////
         int linen = 0;
         FILE * file;
-        char displayText[100];
+        char dText[100];
         bool carry = true;
         file = fopen(filepath, "r");
         if(file == NULL){
@@ -136,23 +144,19 @@ char Menu(){
         }
         // parcours des lignes
         while(!feof(file) && carry == true){
-            fgets(displayText, 100, file); // récupère une ligne de 100 charactère
-            // afichage si vrai :
-            if (linen == line_num){
-                printf("%s\n", displayText);
-                strcpy(getLine, displayText);
-                line_num = linen;
-                carry = false;
-            }
-            linen++;
+            fgets(dText, 100, file); // récupère une ligne de n charactère
+
+            // insère les données dans la liste dynamique
+            ajouterTache(conteneur, );
+
+            //     printf("%s\n", dText);
+            //     strcpy(getLine, dText);
+            //     line_num = linen;
+            //     carry = false;
+            // }
+            linen++; // n° de ligne
         }
         fclose(file);
-
-
-
-
-
-
         ///////////////////////////////
         printf((res == 0) ? "chargement réussi" : "chargement échoué");
         return res;
@@ -167,11 +171,35 @@ char Menu(){
 char * tache2str(Task * tache){
     char * res;
     
-
+    // ---
 
 
     return res;
 }
+
+/**
+ * 
+ *  x: index(ou importance ) 
+ *  n : nom
+ *  d : description 
+ * 
+ * format de la chaine :
+ * x n;;d
+*/
+Task * str2tache(char * strdata){
+    Task tache;
+
+
+
+    tache.description = "";
+    tache.nom = "";
+    tache.priorite = "";
+
+
+
+    return tache;
+}
+
 
 
 
@@ -203,6 +231,8 @@ int main(){
                 break;
             case 'c':
                 // create
+
+                tacheSize++;
                 
                 break;
             case 'd':
