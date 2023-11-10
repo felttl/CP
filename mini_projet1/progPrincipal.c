@@ -38,9 +38,8 @@ int ajouterTache(Task * ListeConteneur, Task tache){
     int erreur = 0;
     int listetaille = (sizeof(ListeConteneur) / sizeof(ListeConteneur[0]));
     printf("verification taille d'une valeur : %d", sizeof(ListeConteneur[0])); // petite verif
-    // réajustement de la taille pour ajouter une valeur dedans
-    listetaille++;    
-    ListeConteneur = (Task*) realloc(ListeConteneur, listetaille * sizeof(Task));
+    // réajustement de la taille pour ajouter une valeur dedans    
+    ListeConteneur = (Task*) realloc (ListeConteneur, ++listetaille * sizeof(Task));
     // on rajoute la tache au nouvel emplacement
 
     ListeConteneur[listetaille] = tache;
@@ -77,7 +76,8 @@ char Menu(){
 	printf("│   d : supprimer une tache  │\n");	
 	printf("│   a : afficher les taches  │\n");	 
 	printf("│     : continuer (faire     │\n");	 
-	printf("│       un espace vide)      │\n");	            	
+	printf("│       un espace vide)      │\n");
+	printf("│   m : modifier une taches  │\n");	     	            	
 	printf("└────────────────────────────┘\n");
 	printf("- - - - - - - - - - - - - - - \n");  
 	printf("  !!!     Attention    !!!    \n");      
@@ -87,7 +87,7 @@ char Menu(){
  	printf("______________________________\n\n");     
 	printf("→");
     // pourquoi le scan est effectué avant les printfs ?
-	scanf("%c", &res); // car on sait pas si saisie user il y a déja une valeur dedans
+	scanf("%c", &res); // on sait pas si saisie user il y a déja une valeur dedans
 	return res; 
 }
 
@@ -98,7 +98,9 @@ char Menu(){
      * mod :
      *      - a : ajouter a la fin d'un fichier même s'il n'existe pas (il sera créé)
      *      - a+ : ajouter 
-     * 
+     *      - w : écrire
+     *      - w+ : écraser si existant puis écrire
+     *      - r : lire
     */
     int sauvegarde(char*filename, char*data, char mod){
         FILE *fp;
@@ -113,6 +115,12 @@ char Menu(){
         return EXIT_SUCCESS;
     }
 
+    /** 
+     * lis un fichier de données avec les taches dedans sous forme de liste exemple :
+     * 0 nom:".....etc...", task:".........commentaire...."
+     * 1 ... etc....
+     * 
+    */
     int chargement(char*filepath,int line_num,char* getLine){
         int res = 0;
         // on écrit durectement la donnée brute dans le fichier de sauvegarde 
@@ -200,5 +208,5 @@ int main(){
 
 
 
-
+// run : sh ./comp*sh ./prog*c 
 // end page
