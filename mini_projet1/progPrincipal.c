@@ -1,7 +1,7 @@
 // ma boite a outils 
 #include <stdlib.h>
 #include <stdio.h>
-typedef enum bool{true, false} bool ; // boolean type as simple usage
+typedef enum bool{true, false} bool ; // printf usable
 
 
 
@@ -24,11 +24,11 @@ typedef enum bool{true, false} bool ; // boolean type as simple usage
 
 #define DEFAULT_FILENAME "save.txt"
 
-typedef struct Task{
+typedef struct Task{// avec allias
     char nom[25];
     char description[40];
     int priorite;
-} Task;
+} Task ;
 
 /* func -> err
 
@@ -161,14 +161,26 @@ char Menu(){
 
     }
 
+/**
+ * transforme une tache dans la mémoire en chaine enregistrable dans un fichier texte
+*/
+char * tache2str(Task * tache){
+    char * res;
+    
+
+
+
+    return res;
+}
+
 
 
 int main(){
     // liste de taches pour le stockage
-    Task * ListeTaches;
+    Task * listeTaches;
     // allocation dynamique (amplecement d'une seule tache par défaut vide)
-    ListeTaches = (Task*) malloc (sizeof(Task));
-
+    listeTaches = (Task*) malloc (sizeof(Task));
+    int tacheSize = 0;
     bool carry = true;
     char reponse;
     char contenu;
@@ -178,10 +190,17 @@ int main(){
         reponse = Menu();
         switch (reponse){
             case 's':
-                // sauvegarde
-                // quitte
+                // sauvegarde de chaque taches dans lee fichier sous forme de texte 
+                if (tacheSize > 0){
+                    for (int i=0; i<tacheSize; i++){
+                        sauvegarde(DEFAULT_FILENAME, tache2str(listeTaches[i]), "a");
+                    }
+                } else {
+                    printf("erreur : il n'y a pas de taches a enregistrer")
+                }
+                
                 carry = false;
-                break; // je déteste les break -_-
+                break;
             case 'c':
                 // create
                 
@@ -191,7 +210,7 @@ int main(){
                 break;
             case 'a':
                 // afficher les taches uniquement
-                afficheTask(ListeTaches, -2);
+                afficheTask(listeTaches, -2);
                 break;
             
             
@@ -202,7 +221,7 @@ int main(){
     printf("merci d'avoir utilise notre systeme de taches\na bientot...\n\n");
 
 
-    free(ListeTaches);
+    free(listeTaches);
     return 0;
 }
 

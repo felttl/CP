@@ -1,0 +1,20 @@
+pour la conception de tache
+(ne pas oublier l'utilisation concrète par des personnes)
+
+
+- créer une tache
+- modifier tache
+- supprimer une tache
+
+
+- affiche toutes les taches
+- pourvoir modifier plusieurs taches en même temps (selon priorité ou id de la tache)
+- trier les taches 
+
+- créer des templates de taches (ajouter des attributs)
+- mettre a jour les taches (et ça priorité) selon le nombre de consultations  (ou la dernière consultation donc éditable par l'utilisateur)
+- sauvegarder les taches dans un fichier
+
+
+
+# end page
